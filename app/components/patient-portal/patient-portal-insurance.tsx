@@ -1,5 +1,4 @@
-import Image from "next/image";
-import ShieldIcon from '../../../public/shieldIcon.svg';
+import FadeIn from "../fade-in";
 
 interface InsurancePlan {
     provider: string;
@@ -63,94 +62,96 @@ function statusBadgeClasses(status: string) {
 export default function PatientPortalInsurance() {
     return (
         <>
-            <div className="flex flex-col">
+            <FadeIn>
+                <div className="flex flex-col">
 
-                <div className="flex flex-col gap-1">
-                    <p className="text-lg text-black dark:text-white font-bold">Insurance</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 font-normal">
-                        View your coverage details, plan status, and recent claims
-                    </p>
-                </div>
-
-                {/* Plan overview card */}
-                <div className="flex flex-col w-full bg-white dark:bg-gray-900 rounded-lg p-4 mt-6">
-                    <div className="flex items-start justify-between">
-                        <div className="flex flex-col">
-                            <p className="text-xs text-black dark:text-white font-semibold">{insurancePlan.provider}</p>
-                            <p className="text-base text-black dark:text-white font-semibold mt-0.5">{insurancePlan.planName}</p>
-                        </div>
-                        <span className={`text-[0.65rem] font-semibold px-2 py-1 rounded-full ${statusBadgeClasses(insurancePlan.status)}`}>
-                            {insurancePlan.status}
-                        </span>
+                    <div className="flex flex-col gap-1">
+                        <p className="text-lg text-black dark:text-white font-bold">Insurance</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 font-normal">
+                            View your coverage details, plan status, and recent claims
+                        </p>
                     </div>
 
-                    <div className="flex flex-col gap-2 mt-4">
-                        <div className="flex justify-between">
-                            <p className="text-xs text-black dark:text-white font-light">Policy Number</p>
-                            <p className="text-xs text-black dark:text-white font-medium">{insurancePlan.policyNumber}</p>
-                        </div>
-                        <div className="flex justify-between">
-                            <p className="text-xs text-black dark:text-white font-light">Member ID</p>
-                            <p className="text-xs text-black dark:text-white font-medium">{insurancePlan.memberId}</p>
-                        </div>
-                        <div className="flex justify-between">
-                            <p className="text-xs text-black dark:text-white font-light">Valid Until</p>
-                            <p className="text-xs text-black dark:text-white font-medium">{insurancePlan.validUntil}</p>
-                        </div>
-                    </div>
-
-                    <button className="bg-[#46667a] cursor-pointer dark:bg-sky-500/25 w-full text-white font-semibold text-sm p-2 px-4 rounded-lg text-center mt-4">
-                        Contact Insurance Provider
-                    </button>
-                </div>
-
-                {/* Coverage details */}
-                <div className="flex flex-col gap-2 mt-6">
-                    <p className="text-xs text-black dark:text-white font-normal">Coverage Details</p>
-
-                    <div className="flex flex-col rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800">
-                        {coverageItems.map((item, idx) => (
-                            <div
-                                key={item.label}
-                                className={`flex items-center justify-between bg-white dark:bg-gray-900 px-3 py-3 ${
-                                    idx !== coverageItems.length - 1
-                                        ? "border-b border-gray-100 dark:border-gray-800"
-                                        : ""
-                                }`}
-                            >
-                                <p className="text-xs text-black dark:text-white font-light">{item.label}</p>
-                                <p className="text-xs text-black dark:text-white font-medium text-right">{item.value}</p>
+                    {/* Plan overview card */}
+                    <div className="flex flex-col w-full bg-white dark:bg-gray-900 rounded-lg p-4 mt-6">
+                        <div className="flex items-start justify-between">
+                            <div className="flex flex-col">
+                                <p className="text-xs text-black dark:text-white font-semibold">{insurancePlan.provider}</p>
+                                <p className="text-base text-black dark:text-white font-semibold mt-0.5">{insurancePlan.planName}</p>
                             </div>
-                        ))}
+                            <span className={`text-[0.65rem] font-semibold px-2 py-1 rounded-full ${statusBadgeClasses(insurancePlan.status)}`}>
+                                {insurancePlan.status}
+                            </span>
+                        </div>
+
+                        <div className="flex flex-col gap-2 mt-4">
+                            <div className="flex justify-between">
+                                <p className="text-xs text-black dark:text-white font-light">Policy Number</p>
+                                <p className="text-xs text-black dark:text-white font-medium">{insurancePlan.policyNumber}</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p className="text-xs text-black dark:text-white font-light">Member ID</p>
+                                <p className="text-xs text-black dark:text-white font-medium">{insurancePlan.memberId}</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p className="text-xs text-black dark:text-white font-light">Valid Until</p>
+                                <p className="text-xs text-black dark:text-white font-medium">{insurancePlan.validUntil}</p>
+                            </div>
+                        </div>
+
+                        <button className="bg-[#46667a] cursor-pointer dark:bg-sky-500/25 w-full text-white font-semibold text-sm p-2 px-4 rounded-lg text-center mt-4">
+                            Contact Insurance Provider
+                        </button>
                     </div>
-                </div>
 
-                {/* Recent claims */}
-                <div className="flex flex-col gap-2 mt-6 mb-4">
-                    <p className="text-xs text-black dark:text-white font-normal">Recent Claims</p>
+                    {/* Coverage details */}
+                    <div className="flex flex-col gap-2 mt-6">
+                        <p className="text-xs text-black dark:text-white font-normal">Coverage Details</p>
 
-                    <div className="flex flex-col rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800">
-                        {claims.map((claim, idx) => (
-                            <div
-                                key={`${claim.description}-${claim.date}`}
-                                className={`flex items-center justify-between bg-white dark:bg-gray-900 px-3 py-3 ${
-                                    idx !== claims.length - 1
-                                        ? "border-b border-gray-100 dark:border-gray-800"
-                                        : ""
-                                }`}
-                            >
-                                <div className="flex flex-col">
-                                    <p className="text-sm text-black dark:text-white font-semibold">{claim.description}</p>
-                                    <p className="text-xs text-black dark:text-white font-light mt-0.5">{claim.date} &middot; {claim.amount}</p>
+                        <div className="flex flex-col rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800">
+                            {coverageItems.map((item, idx) => (
+                                <div
+                                    key={item.label}
+                                    className={`flex items-center justify-between bg-white dark:bg-gray-900 px-3 py-3 ${
+                                        idx !== coverageItems.length - 1
+                                            ? "border-b border-gray-100 dark:border-gray-800"
+                                            : ""
+                                    }`}
+                                >
+                                    <p className="text-xs text-black dark:text-white font-light">{item.label}</p>
+                                    <p className="text-xs text-black dark:text-white font-medium text-right">{item.value}</p>
                                 </div>
-                                <span className={`text-[0.65rem] font-semibold px-2 py-1 rounded-full whitespace-nowrap ${statusBadgeClasses(claim.status)}`}>
-                                    {claim.status}
-                                </span>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Recent claims */}
+                    <div className="flex flex-col gap-2 mt-6 mb-4">
+                        <p className="text-xs text-black dark:text-white font-normal">Recent Claims</p>
+
+                        <div className="flex flex-col rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800">
+                            {claims.map((claim, idx) => (
+                                <div
+                                    key={`${claim.description}-${claim.date}`}
+                                    className={`flex items-center justify-between bg-white dark:bg-gray-900 px-3 py-3 ${
+                                        idx !== claims.length - 1
+                                            ? "border-b border-gray-100 dark:border-gray-800"
+                                            : ""
+                                    }`}
+                                >
+                                    <div className="flex flex-col">
+                                        <p className="text-sm text-black dark:text-white font-semibold">{claim.description}</p>
+                                        <p className="text-xs text-black dark:text-white font-light mt-0.5">{claim.date} &middot; {claim.amount}</p>
+                                    </div>
+                                    <span className={`text-[0.65rem] font-semibold px-2 py-1 rounded-full whitespace-nowrap ${statusBadgeClasses(claim.status)}`}>
+                                        {claim.status}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </FadeIn>
         </>
     );
 }

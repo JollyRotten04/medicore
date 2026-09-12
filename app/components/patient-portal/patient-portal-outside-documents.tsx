@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FadeIn from "../fade-in";
 
 interface OutsideDocument {
     name: string;
@@ -36,57 +37,59 @@ export default function PatientPortalOutsideDocuments() {
 
     return (
         <>
-            <div className="flex flex-col">
+            <FadeIn>
+                <div className="flex flex-col">
 
-                <div className="flex flex-col gap-1">
-                    <p className="text-lg text-black dark:text-white font-bold">Outside Documents</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 font-normal">
-                        Medical records and files from outside providers
-                    </p>
-                </div>
+                    <div className="flex flex-col gap-1">
+                        <p className="text-lg text-black dark:text-white font-bold">Outside Documents</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 font-normal">
+                            Medical records and files from outside providers
+                        </p>
+                    </div>
 
-                <button className="bg-[#46667a] dark:bg-sky-500/25 w-full text-white font-semibold text-sm p-2 px-4 rounded-lg text-center mt-6 cursor-pointer">
-                    Upload Document
-                </button>
+                    <button className="bg-[#46667a] dark:bg-sky-500/25 w-full text-white font-semibold text-sm p-2 px-4 rounded-lg text-center mt-6 cursor-pointer">
+                        Upload Document
+                    </button>
 
-                <div className="flex flex-col gap-2 mt-6 mb-4">
+                    <div className="flex flex-col gap-2 mt-6 mb-4">
 
-                    {documents.length > 0 ? (
-                        <div className="flex flex-col rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800">
-                            {documents.map((doc, idx) => (
-                                <div
-                                    key={`${doc.name}-${doc.uploadedDate}`}
-                                    className={`flex items-center justify-between bg-white dark:bg-gray-900 px-3 py-3 gap-3 ${
-                                        idx !== documents.length - 1
-                                            ? "border-b border-gray-100 dark:border-gray-800"
-                                            : ""
-                                    }`}
-                                >
-                                    <div className="flex flex-col min-w-0">
-                                        <p className="text-sm text-black dark:text-white font-semibold truncate">{doc.name}</p>
-                                        <p className="text-xs text-black dark:text-white font-light mt-0.5">
-                                            {doc.category} &middot; {doc.uploadedDate} &middot; {doc.fileSize}
-                                        </p>
+                        {documents.length > 0 ? (
+                            <div className="flex flex-col rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800">
+                                {documents.map((doc, idx) => (
+                                    <div
+                                        key={`${doc.name}-${doc.uploadedDate}`}
+                                        className={`flex items-center justify-between bg-white dark:bg-gray-900 px-3 py-3 gap-3 ${
+                                            idx !== documents.length - 1
+                                                ? "border-b border-gray-100 dark:border-gray-800"
+                                                : ""
+                                        }`}
+                                    >
+                                        <div className="flex flex-col min-w-0">
+                                            <p className="text-sm text-black dark:text-white font-semibold truncate">{doc.name}</p>
+                                            <p className="text-xs text-black dark:text-white font-light mt-0.5">
+                                                {doc.category} &middot; {doc.uploadedDate} &middot; {doc.fileSize}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex items-center gap-2 shrink-0">
+                                            <span className={`text-[0.65rem] font-semibold px-2 py-1 rounded-full ${fileTypeBadgeClasses(doc.fileType)}`}>
+                                                {doc.fileType}
+                                            </span>
+                                            <button className="text-xs text-blue-900 dark:text-blue-400 font-medium hover:underline cursor-pointer">
+                                                View
+                                            </button>
+                                        </div>
                                     </div>
-
-                                    <div className="flex items-center gap-2 shrink-0">
-                                        <span className={`text-[0.65rem] font-semibold px-2 py-1 rounded-full ${fileTypeBadgeClasses(doc.fileType)}`}>
-                                            {doc.fileType}
-                                        </span>
-                                        <button className="text-xs text-blue-900 dark:text-blue-400 font-medium hover:underline cursor-pointer">
-                                            View
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="flex flex-col justify-center items-center h-full w-full text-center gap-4 py-8">
-                            <p className="text-xs text-black dark:text-white font-light">No documents uploaded yet</p>
-                        </div>
-                    )}
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="flex flex-col justify-center items-center h-full w-full text-center gap-4 py-8">
+                                <p className="text-xs text-black dark:text-white font-light">No documents uploaded yet</p>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
+            </FadeIn>
         </>
     );
 }

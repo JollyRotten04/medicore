@@ -1,4 +1,5 @@
 import Carousel from "./carousel";
+import FadeIn from "./fade-in";
 
 const partners = [
     {
@@ -32,8 +33,7 @@ export default function OurPartners(){
         <>
             <div className="h-dvh w-full shrink-0 overflow-y-auto flex flex-col justify-center bg-[#EDF3F6] px-4 py-10 dark:bg-gray-900/60">
 
-                <div className="w-full max-w-2xl mx-auto flex flex-col">
-
+                <FadeIn className="w-full max-w-2xl mx-auto flex flex-col">
                     <p className="font-serif text-xl sm:text-2xl text-center text-[#11537B] dark:text-white">
                         Why You Can Trust Us
                     </p>
@@ -67,7 +67,7 @@ export default function OurPartners(){
                             )}
                         />
                     </div>
-                </div>
+                </FadeIn>
             </div>
         </>
     );

@@ -2,6 +2,7 @@
 
 import Carousel from "./carousel";
 import Image from "next/image";
+import FadeIn from "./fade-in";
 
 const facilities = [
     {
@@ -36,8 +37,7 @@ export default function OurFacilities(){
         <>
             <div className="h-dvh w-full shrink-0 overflow-y-auto flex flex-col justify-center bg-[#EDF3F6] px-4 py-10 dark:bg-gray-900/60">
 
-                <div className="w-full max-w-2xl mx-auto flex flex-col">
-
+                <FadeIn className="w-full max-w-2xl mx-auto flex flex-col">
                     <p className="font-serif text-xl sm:text-2xl text-center text-[#11537B] dark:text-white">
                         Our Facilities
                     </p>
@@ -74,7 +74,7 @@ export default function OurFacilities(){
                             )}
                         />
                     </div>
-                </div>
+                </FadeIn>
             </div>
         </>
     );
